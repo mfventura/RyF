@@ -189,7 +189,6 @@ export default class RyFActorSheet extends ActorSheet{
         html.find('.level-up').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
             const habilidad = this.actor.items.get(li.data("itemId"));
-            console.log(habilidad);
             let nivelActual = habilidad.system.nivel;
             let siguienteNivel = Number(nivelActual) +1;
             let experienciaFinal = Number(this.actor.system.derivadas.experiencia.valor) - Number(siguienteNivel);
@@ -252,7 +251,6 @@ export default class RyFActorSheet extends ActorSheet{
     async _onTiradaAtributo(event) {
         const element = event.currentTarget;
         const dataset = element.dataset;
-        console.log(dataset)
         var tipo_dado = "objetivo";
         if (Number(this.actor.system.derivadas.puntosVida.value) <= Number(this.actor.system.atributos.fisico)){
             tipo_dado = "menor"
