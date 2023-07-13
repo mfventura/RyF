@@ -471,6 +471,10 @@ export default class RyFActorSheet extends ActorSheet{
     }
 
     async _onSwitchLock(event) {
+        if(this.actor.system.locked && !game.user.isGM){
+            ui.notifications.notify("Solo un GM puede desbloquear una ficha.");
+            return;
+        }
         ui.notifications.notify(game.user.name + (this.actor.system.locked ? " desbloquea" : " bloquea") + " la ficha de " + this.actor.name);
         this.actor.update ({ 'system.locked': !this.actor.system.locked });
     }
