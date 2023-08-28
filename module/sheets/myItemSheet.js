@@ -4,7 +4,14 @@ export default class RyFItemSheet extends ItemSheet {
       classes: ["ryf", "sheet", "item"],
       width: 320,
       height: 450,
-      resizable: false,
+      resizable: true,
+      tabs: [
+              {
+                navSelector: ".sheet-tabs",
+                contentSelector: ".sheet-body",
+                initial: "habilidades",
+              },
+            ],
     });
   }
 
@@ -33,6 +40,7 @@ export default class RyFItemSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".item-create").click(this._onItemCreate.bind(this));
+    html.find(".effect-create").click(this._onCreateEffect.bind(this));
   }
 
   _onItemCreate(event) {
@@ -55,5 +63,18 @@ export default class RyFItemSheet extends ItemSheet {
     // Finally, create the item!
     return Item.create(itemData, { parent: this.item });
     console.log(this.item.system.efectos);
+  }
+
+  _onCreateEffect(event){
+  console.log(this)
+  console.log(event)
+  let effect = this.item.createEmbeddedDocuments("ActiveEffect", [{
+                label: game.i18n.localize("RYF.EffectNew"),
+                icon: "icons/svg/aura.svg",
+                origin: this.uuid,
+                "duration.rounds": undefined,
+                disabled: true
+              }]);
+  console.log(effect)
   }
 }

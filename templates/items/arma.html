@@ -1,53 +1,107 @@
-<form class="{{cssClass}}" autocomplete="off">
-  <div class="flexcol">
-    <div class="flexrow"><input name="name" type="text" value="{{name}}" placeholder='Nombre' onClick="this.select();"/>
-    </div>
-
-    <div class="flexrow">
-      <div class="flexcol">
-        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" alt='Imagen del Personaje'/>
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <header class="sheet-header">
+    <div class="header-fields">
+      <div class="flexrow">
+        <input name="name" type="text" value="{{name}}" placeholder='Nombre' onClick="this.select();"/>
       </div>
-      <div class="flexcol">
-      <div>
-        <label>Precio</label>
-        <input type="text" name="system.Precio" value="{{system.Precio}}" data-dtype="Number" maxlength="4"/>
-
-      </div>
-      <div>
-        <label>Tipo arma</label>
-        <select name="system.tipo" data-dtype="String">
-          {{#select system.tipo}}
-          <option value="melee">Cuerpo a cuerpo</option>
-          <option value="ranged">Distancia</option>
-          {{/select}}
-        </select>
-      </div>
-      {{#if (eq system.tipo "ranged")}}
+      <div class="flexrow">
+        <div class="flexcol">
+          <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" alt='Imagen del Personaje'/>
+        </div>
+        <div class="flexcol">
         <div>
-          <label>Alcance</label>
-          <div class="flexrow">
-            <input type="text" name="system.alcance.corto" value="{{system.alcance.corto}}" data-dtype="Number" maxlength="3"/>
-            /
-            <input type="text" name="system.alcance.medio" value="{{system.alcance.medio}}" data-dtype="Number" maxlength="3"/>
-            /
-            <input type="text" name="system.alcance.largo" value="{{system.alcance.largo}}" data-dtype="Number" maxlength="3"/>
+          <label>Precio</label>
+          <input type="text" name="system.Precio" value="{{system.Precio}}" data-dtype="Number" maxlength="4"/>
+
+        </div>
+        <div>
+          <label>Tipo arma</label>
+          <select name="system.tipo" data-dtype="String">
+            {{#select system.tipo}}
+            <option value="melee">Cuerpo a cuerpo</option>
+            <option value="ranged">Distancia</option>
+            {{/select}}
+          </select>
+        </div>
+        {{#if (eq system.tipo "ranged")}}
+          <div>
+            <label>Alcance</label>
+            <div class="flexrow">
+              <input type="text" name="system.alcance.corto" value="{{system.alcance.corto}}" data-dtype="Number" maxlength="3"/>
+              /
+              <input type="text" name="system.alcance.medio" value="{{system.alcance.medio}}" data-dtype="Number" maxlength="3"/>
+              /
+              <input type="text" name="system.alcance.largo" value="{{system.alcance.largo}}" data-dtype="Number" maxlength="3"/>
+            </div>
+          </div>
+        {{/if}}
+          <div>
+            <label>Daño</label>
+            <div class="flexrow">
+              <input type="text" name="system.dano.numeroDados" value="{{system.dano.numeroDados}}"/><label>D6+</label><input type="text" name="system.dano.bonificador" value="{{system.dano.bonificador}}"/>
+            </div>
           </div>
         </div>
-      {{/if}}
-        <div>
-        <label>Daño</label>
-        <div class="flexrow">
-        <input type="text" name="system.dano.numeroDados" value="{{system.dano.numeroDados}}"/><label>D6+</label><input type="text" name="system.dano.bonificador" value="{{system.dano.bonificador}}"/>
       </div>
+    </div>
+  </header>
+
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+      <a class="item" data-tab="biografia">{{localize 'description'}}</a>
+      <a class="item" data-tab="effects">{{localize 'effects'}}</a>
+  </nav>
+
+  <section class="sheet-body">
+      <div class="tab" data-group="primary" data-tab="biografia">
+      <div>
+        <div class="Arma-descripcion-container">
+          {{{editor system.descripcion target="system.descripcion" button=true owner=owner editable=true}}}
         </div>
       </div>
-    </div>
+      </div>
+      <div class="tab" data-group="primary" data-tab="effects">
+        <div>
+          <ol class="items-list effects-list">
+            <li class="items-header flexrow">
+              <div class="effect-source">{{localize "source"}}</div>
+              <div class="effect-source">{{localize "duration"}}</div>
+              <div class="item-controls effect-controls flexrow">
+                <a class="effect-create" data-tooltip="effectCreate">
+                  <i class="fas fa-plus"></i> {{localize "add"}}
+                </a>
+              </div>
+            </li>
 
-    <div>
-      <label>Descripcion</label>
-    <div class="Arma-descripcion-container">
-      {{{editor system.descripcion target="system.descripcion" button=true owner=owner editable=true}}}
-    </div>
-    </div>
-  </div>
+            <ol class="item-list">
+              {{#each effects as |effect|}}
+              <li class="item effect flexrow" data-effect-id="{{effect.id}}">
+                <div class="item-name effect-name flexrow">
+                  <img class="item-image" src="{{effect.icon}}"/>
+                  <h4>{{effect.label}}</h4>
+                </div>
+                <div class="effect-source">{{effect.sourceName}}</div>
+                <div class="effect-duration">{{effect.duration.label}}</div>
+                <div class="item-controls effect-controls flexrow">
+                  {{#if @root.editable}}
+                  <a class="effect-control" data-action="toggle"
+                     data-tooltip="{{#if effect.disabled}}DND5E.EffectEnable{{else}}DND5E.EffectDisable{{/if}}">
+                    <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                  </a>
+                  <a class="effect-control" data-action="edit" data-tooltip="DND5E.EffectEdit">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a class="effect-control" data-action="delete" data-tooltip="DND5E.EffectDelete">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                  {{/if}}
+                </div>
+              </li>
+              {{/each}}
+            </ol>
+          </ol>
+
+        </div>
+      </div>
+  </section>
 </form>

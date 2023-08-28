@@ -1,3 +1,7 @@
+This document is informative and explains the meaning of each flag.
+
+- hitPoints: increase MAX hitPoints
+- mana: increase MAX mana
 A continuacion se provee una lista de valores a establecer en las mejoras.
 
 attribute: ["f", "d", "i", "p", "c"]
