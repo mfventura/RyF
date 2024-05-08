@@ -1,7 +1,7 @@
 {
   "Actor": {
     "types": ["jugador", "pnj"],
-    "jugador":{
+    "jugador": {
       "atributos": {
         "fisico": 0,
         "destreza": 0,
@@ -22,14 +22,14 @@
           "escudoCac": 0,
           "escudoDist": 0
         },
-        "puntosVida":{
-          "value":0,
-          "min":-10,
+        "puntosVida": {
+          "value": 0,
+          "min": -10,
           "max": 0
         },
         "puntosMana": {
-          "value":0,
-          "min":0,
+          "value": 0,
+          "min": 0,
           "max": 0
         }
       },
@@ -48,96 +48,105 @@
       "locked": false
     },
 
-  "pnj":{
-    "derivadas": {
-      "iniciativa": 0,
-      "ataque": 0,
-      "defensa": {
-        "base": 0
+    "pnj": {
+      "derivadas": {
+        "iniciativa": 0,
+        "ataque": 0,
+        "defensa": {
+          "base": 0
+        },
+        "absorcion": 0,
+        "puntosVida": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "puntosMana": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        }
       },
+      "dano": {
+        "numeroDados": 0,
+        "bonificador": ""
+      },
+      "descripcion": ""
+    }
+  },
+
+  "Item": {
+    "types": [
+      "arma",
+      "armadura",
+      "escudo",
+      "objeto",
+      "habilidad",
+      "hechizo",
+      "ventaja"
+    ],
+    "arma": {
+      "descripcion": "",
+      "dano": {
+        "numeroDados": 0,
+        "bonificador": 0
+      },
+      "alcance": {
+        "corto": 0,
+        "medio": 0,
+        "largo": 0
+      },
+      "tipo": ["melee", "ranged"],
+      "precio": 0,
+      "equipado": false,
+      "efectos": {}
+    },
+    "armadura": {
+      "descripcion": "",
       "absorcion": 0,
-      "puntosVida":{
-        "value":0,
-        "min":0,
-        "max": 0
+      "estorbo": 0,
+      "precio": 0,
+      "equipado": false,
+      "efectos": {}
+    },
+    "escudo": {
+      "descripcion": "",
+      "defensa": {
+        "cc": 0,
+        "distancia": 0
       },
-      "puntosMana":{
-        "value":0,
-        "min":0,
-        "max": 0
-      }
+      "estorbo": 0,
+      "precio": 0,
+      "equipado": false,
+      "efectos": {}
     },
-  "dano":{
-    "numeroDados": 0,
-    "bonificador": ""
-  },
-  "descripcion": ""
+    "objeto": {
+      "descripcion": "",
+      "cantidad": 0,
+      "precio": 0,
+      "efectos": {}
+    },
+    "habilidad": {
+      "descripcion": "",
+      "atributo": "F",
+      "nivel": 0,
+      "total": 0
+    },
+    "hechizo": {
+      "descripcion": "",
+      "dificultad": 0,
+      "nivel": 0,
+      "mana": 0,
+      "alcance": "",
+      "efectos": {}
+    },
+    "ventaja": {
+      "descripcion": "",
+      "requisitos": {
+        "atributo": "",
+        "valorMinimo": 0
+      },
+      "efectos": {}
+    }
   }
-},
-
-
-"Item":{
-  "types": ["arma", "armadura", "escudo", "objeto", "habilidad", "hechizo", "ventaja"],
-  "arma":{
-    "descripcion": "",
-    "dano":{
-      "numeroDados": 0,
-      "bonificador": 0
-    },
-    "alcance": {
-      "corto": 0,
-      "medio": 0,
-      "largo": 0
-    },
-    "tipo": ["melee", "ranged"],
-    "precio": 0,
-    "equipado": false
-  },
-  "armadura":{
-    "descripcion": "",
-    "absorcion": 0,
-    "estorbo": 0,
-    "precio":0,
-    "equipado": false
-  },
-  "escudo":{
-    "descripcion": "",
-    "defensa": {
-      "cc": 0,
-      "distancia": 0
-    },
-    "estorbo": 0,
-    "precio": 0,
-    "equipado": false
-  },
-  "objeto":{
-    "descripcion": "",
-    "cantidad": 0,
-    "precio": 0,
-    "flags":{}
-  },
-  "habilidad":{
-    "descripcion": "",
-    "atributo": "F",
-    "nivel": 0,
-    "total": 0
-  },
-  "hechizo":{
-    "descripcion": "",
-    "dificultad": 0,
-    "nivel": 0,
-    "mana": 0,
-    "alcance": "",
-    "flags":{}
-
-  },
-  "ventaja":{
-    "descripcion": "",
-    "requisitos": {
-      "atributo": "",
-      "valorMinimo": 0
-    },
-    "flags":{}
-  }
-}
 }

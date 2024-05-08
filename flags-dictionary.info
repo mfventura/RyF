@@ -1,0 +1,19 @@
+This document is informative and explains the meaning of each flag.
+
+- hitPoints: increase MAX hitPoints
+- mana: increase MAX mana
+A continuacion se provee una lista de valores a establecer en las mejoras.
+
+attribute: ["f", "d", "i", "p", "c"]
+iniciative
+absortion
+encumbrance
+defense: ["melee", "ranged"]
+hitPointsMultiplier
+manaMultiplier
+skill.attribute: ["f", "d", "i", "p", "c"]
+combat.melee
+combat.ranged
+combat.damage.melee
+combat.damage.ranged
+spell.roll
