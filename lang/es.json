@@ -1,5 +1,5 @@
 {
-  "attributes" : "Atributos",
+  "attributes": "Atributos",
   "skills": "Habilidades",
   "skill": "Habilidad",
   "iniciative": "Iniciativa",
@@ -35,7 +35,6 @@
       "perception": "Percepción",
       "charisma": "Carisma"
     },
-    "skills" : {
-    }
+    "skills": {}
   }
 }
